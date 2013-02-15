@@ -6,3 +6,6 @@
 /Makefile.setupenv
 /cin
 /config/perl/libs.txt
+/deps/
+/lib/Geo/Coords.pm
+/lib/Geo/WGS2TKY2.html

@@ -1,0 +1,64 @@
+=head1 NAME
+
+Geo::Coords - Geographical coordinate operations
+
+=head1 SYNOPSIS
+
+  use Geo::Coords;
+  
+  ($wgs_lat, $wgs_lon) = tokyo2wgs($tokyo_lat, $tokyo_lon);
+  $meters = meter_distance_of_latlons($lat1, $lon1, $lat2, $lon2);
+
+=head1 DESCRIPTION
+
+The C<Geo::Coords> module provides functions related to conversion and
+other operations on geographical coordinates.
+
+=head1 FUNCTIONS
+
+The module exports two functions:
+
+=over 4
+
+=item ($wgs_lat, $wgs_lon) = tokyo2wgs($tokyo_lat, $tokyo_lon)
+
+Converts coordinate represented by Tokyo Datum into WGS84.
+
+=item $meters = meter_distance_of_latlons($lat1, $lon1, $lat2, $lon2)
+
+Returns the approximate distance between two coordinates, in the meter
+unit.
+
+=back
+
+=head1 SEE ALSO
+
+"02 DATUM", Nowral, 7 March
+2001. <http://homepage3.nifty.com/Nowral/02_DATUM/02_DATUM.html>.  (In
+Japanese)
+
+About JGD2000, Geographical Survey Institute, 2002.
+<http://www.gsi.go.jp/LAW/jgd2000-AboutJGD2000.htm>.  (In Japanese)
+
+=head1 AUTHORS
+
+Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>, chris4403
+<chris4403@hatena.ne.jp>.
+
+=head1 ACKNOWLEDGEMENTS
+
+The generated C<Coords.pm> file includes parts of code fragment
+available at
+<http://homepage3.nifty.com/Nowral/02_DATUM/WGS2TKY2.html>.  Part of
+code in C<Coords.pm.src> is largely inspired by code fragment in
+<http://d.hatena.ne.jp/sirocco634/20090804/1249395277>.
+
+=head1 LICENSE
+
+Copyright 2009-2010 Hatena <http://www.hatena.ne.jp/>.
+
+Files included in the C<Geo::Coords> source distribution are free
+software; you can redistribute it and/or modify it under the same
+terms as Perl itself.
+
+=cut

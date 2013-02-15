@@ -1,0 +1,45 @@
+package Geo::Coords; # -*- Perl -*-
+use strict;
+use warnings;
+our $VERSION = '1.0';
+use Exporter::Lite;
+use Math::Trig;
+
+# !!! Coords.pm is automatically generated from Coords.pm.src !!!
+# !!! Don't edit Coords.pm directly !!!
+
+our @EXPORT = qw(
+    tokyo2wgs
+    meter_distance_of_latlons
+);
+
+my ($pi, $rd, $a, $f, $e2, $a_, $f_, $e2_, $dx, $dy, $dz);
+BEGIN {
+# @@@DATUM1@@@
+}
+
+sub tokyo2wgs ($$) {
+    my ($lat, $lon) = @_;
+    my ($x, $y, $z) = llh2xyz($lat, $lon, 0, $a_, $e2_);
+    my ($b, $l, $h) = xyz2llh($x - $dx, $y - $dy, $z - $dz, $a, $e2);
+    return ($b, $l);
+}
+
+# @@@DATUM2@@@
+
+sub meter_distance_of_latlons ($$$$) {
+    my $lat1 = deg2rad($_[0]); 
+    my $lon1 = deg2rad($_[1]); 
+    my $lat2 = deg2rad($_[2]); 
+    my $lon2 = deg2rad($_[3]); 
+    my $lat = abs($lat2 - $lat1);
+    my $lon = abs($lon2 - $lon1);
+
+    my $R_lat = 6_356_752;
+    my $R_lon = 6_378_137;
+    my $disp_lon = $R_lon * $lon * cos($lat2);
+    my $disp_lat = $R_lat * $lat;
+    return int sqrt(($disp_lon ** 2) + ($disp_lat ** 2));
+}
+
+1;

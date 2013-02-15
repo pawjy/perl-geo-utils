@@ -1,0 +1,119 @@
+=head1 NAME
+
+Geo::Format::HTTP - Geolocation data extraction from HTTP request
+
+=head1 SYNOPSIS
+
+  use Geo::Format::HTTP;
+  
+  $req = HTTP::Request or compatible object;
+  ($lat, $lon) = get_location_from_req $req;
+
+=head1 DESCRIPTION
+
+The C<Geo::Format::HTTP> method provides a method
+C<get_location_from_req> to extract geolocation data from an HTTP
+request object.  Though Web browsers of many Japanese Galapagos mobile
+phones can expose their geographical location data to Web applications
+using query component of HTTP request URLs, different vendors
+implements different syntaxes.  This module supports parsing of
+docomo, au, and SoftBank's syntaxes, as well as trivial formats that
+would be useful for JavaScript-based Web applications.
+
+=head1 FUNCTION
+
+The module exports a method:
+
+=over 4
+
+=item ($lat, $lon) = get_location_from_req $req
+
+Finds a geographical location data from the given input and returns
+the pair of latitude and longitude of the location.
+
+The input argument must be an object that has the C<param> method.
+The method will be passed an argument.  When invoked, the method must
+return a string that represents the (percent-decoded) query parameter
+of the given name, if found, or a false value.  The query parameters
+in this context are set of name-value pairs included as the query
+component of the URL received as the C<request-URI> of the HTTP
+request in question.
+
+The method returns the pair of latitude and longitude, represented as
+real numbers of degrees.  If the method cannot find the location data
+from the input, then the method returns C<(0, 0)>.  Note that this
+means that this method cannot handle location data whose coordinate is
+exactly equal to C<(0, 0)>.
+
+=back
+
+=head1 SUPPORTED SYNTAXES
+
+=over 4
+
+=item pos=S35.0.51.001W135.45.47.023
+
+The format used by SoftBank and Willcom.  If the C<geo> parameter is
+missing, or is set to C<tokyo>, then the coordinate is assumed as
+represented in Tokyo Datum; otherwise the coordinate is in WGS84.
+This module only supports the C<pos> and C<geo> parameters; any other
+query parameters are ignored.  It also ignores fraction part of
+seconds.
+
+=item lat=+34.42.33.14&lon=+135.36.52.52
+
+The format used by NTT docomo and au.  This module only supports the
+C<lat> and C<lon> parameters; any other query parameters are ignored.
+It also ignores fraction part of seconds.
+
+=item lat=34.7092055555556&lon=135.614588888889
+
+The latitude and longitude in WGS84 as fractional numbers, passed as
+separate parameters.
+
+=item ll=34.7092055555556,135.614588888889
+
+The latitude and longitude in WGS84 as fractional numbers, passed as a
+parameter.
+
+=item js_lat=34.7092055555556&js_lon=135.614588888889
+
+The latitude and longitude in WGS84 as fractional numbers, passed as
+separate parameters.  This format is supported for compatibility with
+the Imakoko implementation of Hatena Haiku2 <http://h2.hatena.ne.jp/>.
+
+=back
+
+=head1 SEE ALSO
+
+"How to handle geolocation data", id:chris4403, 2010-08-26.
+<http://d.hatena.ne.jp/chris4403+tech/20100830/1283156360>.  (In
+Japanese)
+
+"How to construct location-based Web services", Yoshiomi Kurisu, 2010.
+<http://gihyo.jp/dev/feature/01/location-based-services>.  (In
+Japanese)
+
+=head1 HISTORY
+
+=over 4
+
+=item 1.0 (2010-10-13)
+
+Packaged.
+
+=back
+
+=head1 AUTHORS
+
+Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>, chris4403
+<chris4403@hatena.ne.jp>, cho45 <cho45@hatena.ne.jp>.
+
+=head1 LICENSE
+
+Copyright 2009-2010 Hatena <http://www.hatena.ne.jp/>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
