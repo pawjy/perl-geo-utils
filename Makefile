@@ -38,7 +38,7 @@ PROVE = ./prove
 
 test: test-deps test-main
 
-test-deps: deps
+test-deps: deps build
 
 test-main:
 	$(PROVE) t/geo/*.t
