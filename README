@@ -1,0 +1,30 @@
+perl-geo-utils
+~~~~~~~~~~~~~~
+
+This is a collection of several Perl modules for geographical
+applications.
+
+* Build
+
+  $ make
+
+* Run tests
+
+  $ make test
+
+* Authors
+
+Wakaba <wakabatan@hatena.ne.jp>, chris4403, mechairoi, and yaotti.
+
+* Acknowledgements
+
+These modules were developed as part of Hatena's mobile new service
+project in 2009, and then improved as part of Hatena Haiku 2 and
+Hatena Coco projects.
+
+* License
+
+Copyright 2009-2013 Hatena <http://www.hatena.ne.jp/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
