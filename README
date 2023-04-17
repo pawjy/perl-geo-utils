@@ -14,13 +14,17 @@ applications.
 
 * Authors
 
-Wakaba <wakabatan@hatena.ne.jp>, chris4403, mechairoi, and yaotti.
+Wakaba <wakaba@suikawiki.org>, chris4403, mechairoi, and yaotti.
 
-* Acknowledgements
+* History
 
 These modules were developed as part of Hatena's mobile new service
 project in 2009, and then improved as part of Hatena Haiku 2 and
 Hatena Coco projects.
+
+This repository was hosted at
+<https://github.com/wakaba/perl-geo-utils> until April 17, 2023, then
+transferred to <https://github.com/pawjy/perl-geo-utils>.
 
 * License
 
