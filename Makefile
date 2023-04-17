@@ -1,4 +1,4 @@
-all: deps
+all: deps build
 
 WGET = wget
 GIT = git
